@@ -23,17 +23,17 @@ def Config():
     # 0. 数据相关参数Rest
     argParse.add_argument('--val_ratio', type=float, default=0.0, 
                           help='val split from train')
-    argParse.add_argument('--data_dir', type=str, default="../../Datasets/ABSA/", 
+    argParse.add_argument('--data_dir', type=str, default="../../Datasets/NLG/", 
                           help='directory of data, determine by input later')
-    argParse.add_argument('--data_name', type=str, default="ABSA", 
-                          choices=['Rest', 'Laptop', 'Twitter'], 
-                          help='class of ABSA dataset')
-    argParse.add_argument('--score_base', type=int, default=60.00, 
+    argParse.add_argument('--data_name', type=str, default="SQuAD", 
+                          choices=['SQuAD',], 
+                          help='class of NLG dataset')
+    argParse.add_argument('--score_base', type=int, default=00.00, 
                           help='for saving base model')
     argParse.add_argument('--base_model', type=int, default=0, 
                           choices=[0, 1, 2, 3],
                           help='0: no use; 1: fix base model (=score_base); 2: fix base model (>score_base); 3: update base model')       
-    argParse.add_argument('--n_class', type=int, default=3, 
+    argParse.add_argument('--n_class', type=int, default=None, 
                           help='label classes, re-defined when Data generation') 
     argParse.add_argument('--glove_dir', type=str, default="../../Glove/glove.840B/",  
                           help='directory of glove embeddings, select dimension later')
@@ -42,7 +42,7 @@ def Config():
     argParse.add_argument('--pretrain', type=str, default="bert-base-uncased",  
                           help='pretrained BERT large path')
     argParse.add_argument('--model_name', type=str, default='MemN2N',
-                          choices=['MemN2N', 'TNet'])           
+                          choices=['PathQG',])           
     argParse.add_argument('--embed_type', type=str, default='glove',
                           choices=['none', 'glove', 'bert'])  
     argParse.add_argument('--embed_dim', type=int, default=300,
@@ -53,7 +53,7 @@ def Config():
                           choices=[8, 16, 32, 64, 128])  # #
 
     # 2. 训练相关参数
-    argParse.add_argument('--output_dir', type=str, default="../../Datasets/ABSA/",  
+    argParse.add_argument('--output_dir', type=str, default="../../Datasets/NLG/",  
                           help='determine when model initialization')
     argParse.add_argument('--tb_dir', type=str, default="../../Results/runs/",  
                           help='file dir for tensorboard.')

@@ -31,7 +31,7 @@ def main(args):
     # 0. import Data 
     dataFile = args.data_dir+args.data_name+'/Data'
     if os.path.exists(dataFile): Data = pickle.load(open(dataFile, 'rb'))
-    else: from utils.DataLoad import ABSA; Data = ABSA(args, ratio=1)
+    else: from utils.DataLoad import SQuAD; Data = SQuAD(args, ratio=1)
 
     # 1. import Model and train
     model = args.models[args.model_name](args, Data).to(args.device)
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     args   = Config()
     logger = logging.getLogger(__name__)
     args.models   = {'MemN2N': MemN2N, 'TNet': TNet, 'Bert': MyBert, 'ACLT': ACLT}
-    args.datasets = ['Rest', 'Laptop', 'Twitter']
+    args.datasets = ['SQuAD-1.1',]
     args.methods  = ['no', 'sm', 'sa', 'as', 'au']
 
     dataRes, modelRes = {}, {} # save all results
